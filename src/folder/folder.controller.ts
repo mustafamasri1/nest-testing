@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Delete, Param, Body, HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Param,
+  Body,
+  HttpException,
+  HttpStatus,
+  NotFoundException,
+} from '@nestjs/common';
 import { Folder } from './entities/folder.entity';
 import { FolderService } from './folder.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
@@ -14,7 +24,7 @@ export class FolderController {
     } catch (error) {
       throw new HttpException(
         error.message || 'Failed to create folder',
-        HttpStatus.INTERNAL_SERVER_ERROR
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
@@ -26,7 +36,7 @@ export class FolderController {
     } catch (error) {
       throw new HttpException(
         error.message || 'Failed to get folder tree',
-        HttpStatus.INTERNAL_SERVER_ERROR
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
@@ -37,11 +47,11 @@ export class FolderController {
       await this.folderService.deleteFolder(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
-        throw error; 
+        throw error;
       }
       throw new HttpException(
         error.message || 'Failed to delete folder',
-        HttpStatus.INTERNAL_SERVER_ERROR
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }

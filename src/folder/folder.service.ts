@@ -18,12 +18,16 @@ export class FolderService {
       const sanitizedName = folder.name.replace(/[^a-zA-Z0-9_]/g, '_');
 
       if (folderData.parentId) {
-        const parentFolder = await this.folderRepository.findFolderById(folderData.parentId);
+        const parentFolder = await this.folderRepository.findFolderById(
+          folderData.parentId,
+        );
         if (!parentFolder) {
-          throw new NotFoundException(`Parent folder with ID ${folderData.parentId} not found`);
+          throw new NotFoundException(
+            `Parent folder with ID ${folderData.parentId} not found`,
+          );
         }
         folder.parent = parentFolder;
-        folder.path = `${parentFolder.path}.${sanitizedName}`; 
+        folder.path = `${parentFolder.path}.${sanitizedName}`;
       } else {
         folder.path = sanitizedName;
       }
@@ -36,7 +40,6 @@ export class FolderService {
       throw new Error(`Failed to create folder: ${error.message}`);
     }
   }
-  
 
   async getTree(): Promise<Folder[]> {
     try {
