@@ -73,7 +73,7 @@ This project implements a folder and document management system with hierarchica
    ```sh
    npm run start
    ```
- 6. Run Unit Tests:
+6. Run Unit Tests:
    ```sh
    npm run test
    ```
