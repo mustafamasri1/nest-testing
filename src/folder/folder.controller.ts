@@ -42,9 +42,9 @@ export class FolderController {
   }
 
   @Delete(':id')
-  async deleteFolder(@Param('id') id: number): Promise<void> {
+  async deleteFolder(@Param('id') id: number) {
     try {
-      await this.folderService.deleteFolder(id);
+      return await this.folderService.deleteFolder(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;

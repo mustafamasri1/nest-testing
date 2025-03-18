@@ -33,5 +33,5 @@ export class Folder {
   children: Folder[];
 
   @TreeParent()
-  parent: Folder;
+  parent?: Folder;
 }

@@ -49,13 +49,13 @@ export class FolderService {
     }
   }
 
-  async deleteFolder(folderId: number): Promise<void> {
+  async deleteFolder(folderId: number) {
     try {
       const folder = await this.folderRepository.findFolderById(folderId);
       if (!folder) {
         throw new NotFoundException(`Folder with ID ${folderId} not found`);
       }
-      await this.folderRepository.deleteFolder(folderId);
+      return await this.folderRepository.deleteFolder(folderId);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
